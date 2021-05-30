@@ -1,0 +1,35 @@
+- users
+	mail
+	name
+	surname
+	course
+		id
+			lesson
+				result
+	reserse
+		date
+			time
+
+
+
+- course
+	id
+		title	
+		count
+		lesson
+			title
+			link
+
+
+-team
+	id
+		name
+		surname
+		phone
+		schedule
+			date
+				time
+				reserse
+				user
+
+
