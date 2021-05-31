@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1050431963752",
+    "project_id": "rulinogami",
+    "storage_bucket": "rulinogami.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050431963752:android:20362fbd5e5168e22eb1dd",
+        "android_client_info": {
+          "package_name": "com.example.rulinogami"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050431963752-e24eohgesqau492rcfsisjtkkrkv763o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rulinogami",
+            "certificate_hash": "4cc3c3fe9cfdecced11938f4d72a67860aef6a27"
+          }
+        },
+        {
+          "client_id": "1050431963752-db30tp0m3oh4gdhh0c573dq47g3lmmpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1e9uJGvOVW9Tgw3jMCeCQ0D6x-zA7ORI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050431963752-db30tp0m3oh4gdhh0c573dq47g3lmmpd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
