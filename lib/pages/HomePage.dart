@@ -49,8 +49,8 @@ class HomeWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                height: 40,
-                width: 40,
+                height: 30,
+                width: 30,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
@@ -62,13 +62,13 @@ class HomeWidget extends StatelessWidget {
                 user.displayName,
                 style: TextStyle(fontSize: 20, color: Colors.green),
               ),
-              TextButton(
+              IconButton(
                 onPressed: () {
                   final provider =
                       Provider.of<GoogleSignInProvider>(context, listen: false);
                   provider.logout();
                 },
-                child: Icon(
+                icon: Icon(
                   Icons.logout,
                   color: Colors.green,
                 ),

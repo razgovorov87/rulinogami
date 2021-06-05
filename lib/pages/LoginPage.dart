@@ -64,66 +64,66 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: [
                 SignUpWidget(),
-                SizedBox(height: 5),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 1,
-                          decoration:
-                              BoxDecoration(color: Colors.black.withAlpha(50)),
-                        ),
-                      ),
-                      SizedBox(width: 15),
-                      Text('или'),
-                      SizedBox(width: 15),
-                      Expanded(
-                        child: Container(
-                          height: 1,
-                          decoration:
-                              BoxDecoration(color: Colors.black.withAlpha(50)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/image/vk.png'),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/image/facebook.png'),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/image/instagram.png'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // SizedBox(height: 5),
+                // Container(
+                //   padding: EdgeInsets.symmetric(horizontal: 15),
+                //   child: Row(
+                //     children: [
+                //       Expanded(
+                //         child: Container(
+                //           height: 1,
+                //           decoration:
+                //               BoxDecoration(color: Colors.black.withAlpha(50)),
+                //         ),
+                //       ),
+                //       SizedBox(width: 15),
+                //       Text('или'),
+                //       SizedBox(width: 15),
+                //       Expanded(
+                //         child: Container(
+                //           height: 1,
+                //           decoration:
+                //               BoxDecoration(color: Colors.black.withAlpha(50)),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(height: 15),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Container(
+                //       width: 30,
+                //       height: 30,
+                //       decoration: BoxDecoration(
+                //         image: DecorationImage(
+                //           image: AssetImage('assets/image/vk.png'),
+                //         ),
+                //       ),
+                //     ),
+                //     SizedBox(width: 10),
+                //     Container(
+                //       width: 40,
+                //       height: 40,
+                //       decoration: BoxDecoration(
+                //         image: DecorationImage(
+                //           image: AssetImage('assets/image/facebook.png'),
+                //         ),
+                //       ),
+                //     ),
+                //     SizedBox(width: 10),
+                //     Container(
+                //       width: 30,
+                //       height: 30,
+                //       decoration: BoxDecoration(
+                //         image: DecorationImage(
+                //           image: AssetImage('assets/image/instagram.png'),
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),

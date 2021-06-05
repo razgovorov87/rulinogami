@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rulinogami/pages/CoursePage.dart';
 import 'package:rulinogami/pages/HomePage.dart';
 import 'package:rulinogami/pages/LessonPage.dart';
-import 'package:rulinogami/pages/LoginPage.dart';
 import 'package:rulinogami/pages/ProfilePage.dart';
 import 'package:rulinogami/pages/ShedulePage.dart';
 // ignore: import_of_legacy_library_into_null_safe

@@ -42,7 +42,7 @@ class GoogleSignUpButtonWidget extends StatelessWidget {
               'Авторизоваться через Google',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 16,
                 color: Colors.grey.shade600,
               ),
             ),

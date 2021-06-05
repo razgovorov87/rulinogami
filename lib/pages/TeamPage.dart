@@ -19,7 +19,7 @@ class TeamPage extends StatelessWidget {
         backgroundColor: Colors.green,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 10),
         child: ListView.builder(
           itemCount: instructors.length,
           itemBuilder: (BuildContext context, int index) {
@@ -29,7 +29,7 @@ class TeamPage extends StatelessWidget {
                     AssetImage('assets/image/${instructors[index].photo}.jpg'),
               ),
               title: Text(instructors[index].name),
-              subtitle: Text(instructors[index].phone),
+              subtitle: Text('@' + instructors[index].instagram),
               trailing: TextButton(
                 onPressed: () => launch('tel::${instructors[index].phone}'),
                 child: Icon(Icons.phone, color: Colors.green),
