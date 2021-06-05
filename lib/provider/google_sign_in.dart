@@ -1,5 +1,7 @@
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
@@ -21,6 +23,7 @@ class GoogleSignInProvider extends ChangeNotifier {
     isSigningIn = true;
 
     final user = await googleSignIn.signIn();
+    // ignore: unnecessary_null_comparison
     if (user == null) {
       isSigningIn = false;
       return;

@@ -16,8 +16,9 @@ class CoursePage extends StatefulWidget {
 class _CoursePageState extends State<CoursePage> {
   late String chosenImg;
   late String chosenTitle;
+  late List<LessonRowData> lessonList = [];
 
-  final List<LessonRowData> lessonList = [
+  List<LessonRowData> lessonListBasicCourse = [
     LessonRowData(
         'Правильная разминка\nдля роллера',
         'Во время разминки делаются следующие упражнения:\n\n1) Повороты головы вверх-вниз, влево-вправо;\n\n2) Вращение руками вперед и назад;\n\n3) Повороты и наклоны корпуса;\n\n4) Вращение коленей\n\n5) Вращение голеностопа',
@@ -48,11 +49,80 @@ class _CoursePageState extends State<CoursePage> {
         'https://www.youtube.com/watch?v=N_YkFWJKeMk&list=PLw5lYhpNMf1BZx3HsVo0UFWS5TYqeCo_i&index=12'),
   ];
 
+  List<LessonRowData> lessonListSlalom = [
+    LessonRowData(
+        'Крисс-кросс',
+        'Начинаем делать упражнение фонарик, когда носки сведутся вместе, ведем одну ногу дальше вперед. Как только поравнялась пятка с носком, начинаем движение второй ногой. Далее скрешиваем и ставим ролики прямо.',
+        'https://www.youtube.com/watch?v=TcvZBXN5PzY&list=PLw5lYhpNMf1AV48Kve5bP_NELJ2_YpK2n'),
+    LessonRowData(
+        'Крисс-кросс спиной',
+        'Начинаем делать упражнение фонарик, когда носки сведутся вместе, ведем одну ногу дальше вперед. Как только поравнялась пятка с носком, начинаем движение второй ногой. Далее скрешиваем и ставим ролики прямо.',
+        'https://www.youtube.com/watch?v=1mVwRPzUnEE&list=PLw5lYhpNMf1AV48Kve5bP_NELJ2_YpK2n&index=5'),
+    LessonRowData(
+        'Монолайн',
+        'Набираем среднюю скорость, начинаем делать фонарик, и в конце выводим одну ногу вперед, перед вторым роликом. Держим ролики в одну линию.',
+        'https://www.youtube.com/watch?v=m3fpe19riXY&list=PLw5lYhpNMf1AV48Kve5bP_NELJ2_YpK2n&index=4'),
+    LessonRowData(
+        'Монолайн спиной',
+        'Набираем среднюю скорость, начинаем делать фонарик, и в конце выводим одну ногу вперед, перед вторым роликом. Держим ролики в одну линию.',
+        'https://www.youtube.com/watch?v=y12pOfATqfk&list=PLw5lYhpNMf1AV48Kve5bP_NELJ2_YpK2n&index=6'),
+    LessonRowData(
+        'Ванфут',
+        'Набираем среднюю скорость, ставим ролики рядом друг с другом. Переносим вес тела на одну ногу, вторую поднимаем в воздух. Едем на одной ноге, удерживая равновесие.',
+        'https://www.youtube.com/watch?v=DEg38saFm9Y&list=PLw5lYhpNMf1AV48Kve5bP_NELJ2_YpK2n&index=7'),
+    LessonRowData(
+        'Грейпвайн',
+        'Связка из двух крисс-кроссов. Сначала делаем лицом вперед через 1 конус, останавливаемся в положении галочка. Затем делаем спиной вперед, останавливаемся в положениие обратная галочка.',
+        'https://www.youtube.com/watch?v=KgCF6IhQFvk&list=PLw5lYhpNMf1AV48Kve5bP_NELJ2_YpK2n&index=8'),
+    LessonRowData(
+        'Мабрук',
+        'Связка из 4 элементов: крисс-кросс лицом и спиной и два разворота через галочку. Начинаем делать крисс-кросс лицом вперед, останавливаемся в положении галочка, делаем разворот, далее крисс-кросс спиной и снова разворот. Дальше данный цикл повторяется.',
+        'https://www.youtube.com/watch?v=D8Ab2a2p3Yo&list=PLw5lYhpNMf1AV48Kve5bP_NELJ2_YpK2n&index=22'),
+  ];
+
+  List<LessonRowData> lessonListJumps = [
+    LessonRowData('ZOULOU JUMP', '',
+        'https://www.youtube.com/watch?v=ZCWiwJyYKn8&list=PLlqlJKHZK86rjnU2vI2QX9ZP3vsxXtUjY'),
+    LessonRowData('PAPILLON JUMP', '',
+        'https://www.youtube.com/watch?v=w3ZJLG8dmQc&list=PLlqlJKHZK86rjnU2vI2QX9ZP3vsxXtUjY&index=2'),
+    LessonRowData('KARATE JUMP', '',
+        'https://www.youtube.com/watch?v=-euYQhDAFEI&list=PLlqlJKHZK86rjnU2vI2QX9ZP3vsxXtUjY&index=3'),
+    LessonRowData('FRONT MUTE JUMP', '',
+        'https://www.youtube.com/watch?v=lmj9QeYLSeA&list=PLlqlJKHZK86rjnU2vI2QX9ZP3vsxXtUjY&index=4'),
+    LessonRowData('DRAGON Shifty FS JUMP', '',
+        'https://www.youtube.com/watch?v=WCP-nlOItF8&list=PLlqlJKHZK86rjnU2vI2QX9ZP3vsxXtUjY&index=5'),
+    LessonRowData('FRONT JUMP', '',
+        'https://www.youtube.com/watch?v=4--cDoxdcgs&list=PLlqlJKHZK86rjnU2vI2QX9ZP3vsxXtUjY&index=6'),
+  ];
+
+  List<LessonRowData> lessonListSlides = [
+    LessonRowData('ACID SLIDE', '',
+        'https://www.youtube.com/watch?v=S0ZSDhUfo_Y&list=PLlqlJKHZK86rScQ7_cTDFiK7qCOeH4q68'),
+    LessonRowData('POWERSLIDE', '',
+        'https://www.youtube.com/watch?v=X90Mzh6WlKk&list=PLlqlJKHZK86rScQ7_cTDFiK7qCOeH4q68&index=2'),
+    LessonRowData('SNOWPLOW SLIDE', '',
+        'https://www.youtube.com/watch?v=7QIWN0ztGP4&list=PLlqlJKHZK86rScQ7_cTDFiK7qCOeH4q68&index=3'),
+    LessonRowData('SOUL SLIDE', '',
+        'https://www.youtube.com/watch?v=JlSsxhXcP5I&list=PLlqlJKHZK86rScQ7_cTDFiK7qCOeH4q68&index=4'),
+    LessonRowData('PORNSTAR SLIDE', '',
+        'https://www.youtube.com/watch?v=b5jP2-jGnDE&list=PLlqlJKHZK86rScQ7_cTDFiK7qCOeH4q68&index=5'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
     chosenImg = arguments['img'];
     chosenTitle = arguments['title'];
+    if (chosenTitle == 'Базовый уровень') {
+      lessonList = lessonListBasicCourse;
+    } else if (chosenTitle == 'Слалом') {
+      lessonList = lessonListSlalom;
+    } else if (chosenTitle == 'Прыжки') {
+      lessonList = lessonListJumps;
+    } else if (chosenTitle == 'Слайды') {
+      lessonList = lessonListSlides;
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -162,9 +232,8 @@ class _CoursePageState extends State<CoursePage> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  children:
-                      lessonList.map((e) => productListing(el: e)).toList(),
-                ),
+                    children:
+                        lessonList.map((e) => productListing(el: e)).toList()),
               ),
             ),
           ],

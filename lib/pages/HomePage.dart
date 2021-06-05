@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rulinogami/pages/LoginPage.dart';
+import 'package:rulinogami/provider/google_sign_in.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,6 +10,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ChangeNotifierProvider(
+        create: (context) => GoogleSignInProvider(),
+        child: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            final provider = Provider.of<GoogleSignInProvider>(context);
+
+            if (provider.isSigningIn) {
+              return buildLoading();
+            } else if (snapshot.hasData) {
+              return HomeWidget();
+            } else {
+              return LoginPage();
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget buildLoading() => Center(child: CircularProgressIndicator());
+}
+
+class HomeWidget extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
@@ -18,10 +48,6 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(
-                'Привет,\n' + user.displayName + '!',
-                style: TextStyle(fontSize: 20, color: Colors.green),
-              ),
               Container(
                 height: 40,
                 width: 40,
@@ -30,6 +56,21 @@ class _HomePageState extends State<HomePage> {
                   image: DecorationImage(
                     image: NetworkImage(user.photoURL),
                   ),
+                ),
+              ),
+              Text(
+                user.displayName,
+                style: TextStyle(fontSize: 20, color: Colors.green),
+              ),
+              TextButton(
+                onPressed: () {
+                  final provider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
+                  provider.logout();
+                },
+                child: Icon(
+                  Icons.logout,
+                  color: Colors.green,
                 ),
               ),
             ],
@@ -51,14 +92,14 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        courseWidget(
+                        CourseWidget(
                           'Базовый уровень',
                           'img1',
                           Color(0xFFD9FFCA),
                         ),
                         SizedBox(height: 20),
-                        courseWidget(
-                          'Трюки',
+                        CourseWidget(
+                          'Слалом',
                           'img2',
                           Color(0xFFD9FFCA),
                         ),
@@ -71,13 +112,13 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(height: 30),
-                        courseWidget(
-                          'Продвинутый уровень',
+                        CourseWidget(
+                          'Слайды',
                           'img3',
                           Color(0xFFD9FFCA),
                         ),
                         SizedBox(height: 20),
-                        courseWidget(
+                        CourseWidget(
                           'Прыжки',
                           'img4',
                           Color(0xFFD9FFCA),
@@ -114,6 +155,16 @@ class _HomePageState extends State<HomePage> {
                 ),
                 IconButton(
                   onPressed: () {
+                    Navigator.pushNamed(context, '/team');
+                  },
+                  icon: Icon(
+                    Icons.groups,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
                     Navigator.pushNamed(context, '/profile');
                   },
                   icon: Icon(
@@ -129,8 +180,16 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
 
-  Container courseWidget(String title, String imgPath, Color bgColor) {
+class CourseWidget extends StatelessWidget {
+  late String title;
+  late Color bgColor;
+  late String imgPath;
+
+  CourseWidget(this.title, this.imgPath, this.bgColor);
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
       decoration: BoxDecoration(
@@ -139,9 +198,11 @@ class _HomePageState extends State<HomePage> {
       ),
       child: GestureDetector(
         onTap: () {
-          if (title == 'Базовый уровень') {
-            openCoursePage('$title', '$imgPath');
-          }
+          Navigator.pushNamed(
+            context,
+            '/coursePage',
+            arguments: {'title': '$title', 'img': '$imgPath'},
+          );
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,14 +242,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-    );
-  }
-
-  void openCoursePage(String title, String img) {
-    Navigator.pushNamed(
-      context,
-      '/coursePage',
-      arguments: {'title': '$title', 'img': '$img'},
     );
   }
 }

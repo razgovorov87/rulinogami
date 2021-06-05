@@ -20,6 +20,7 @@ class _LessonPageState extends State<LessonPage> {
     _controller = YoutubePlayerController(
       initialVideoId: 'null',
       flags: YoutubePlayerFlags(
+        isLive: false,
         autoPlay: false,
         mute: false,
       ),
@@ -97,19 +98,24 @@ class _LessonPageState extends State<LessonPage> {
                       ],
                     ),
                     SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Text(
-                          'Описание:',
-                          style: TextStyle(fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      desc,
-                      style: TextStyle(fontSize: 14),
-                    ),
+                    if (desc.isNotEmpty)
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Описание:',
+                                style: TextStyle(fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            desc,
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
                     SizedBox(height: 20),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.6,

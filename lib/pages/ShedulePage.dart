@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:table_calendar/table_calendar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ShedulePage extends StatefulWidget {
   @override
@@ -130,7 +131,7 @@ class _ShedulePageState extends State<ShedulePage> {
         Expanded(
           child: Container(
             margin: EdgeInsets.only(bottom: 20),
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.only(top: 20, left: 20, bottom: 5, right: 20),
             color: Color(0xffe3ffde),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,7 +165,7 @@ class _ShedulePageState extends State<ShedulePage> {
                 Row(
                   children: [
                     Text(
-                      'Рейтинг',
+                      'Рейтинг:',
                       style: TextStyle(
                           color: Colors.grey, fontWeight: FontWeight.w500),
                     ),
@@ -181,14 +182,24 @@ class _ShedulePageState extends State<ShedulePage> {
                   height: 0.5,
                   color: Colors.grey,
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 5),
                 Row(
                   children: [
-                    Icon(Icons.call, color: Colors.green),
-                    SizedBox(width: 5),
-                    Text(
-                      '8 (900) 123 45-67',
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                    TextButton(
+                      onPressed: () =>
+                          launch("whatsapp://send?phone=+79609447688"),
+                      child: Row(
+                        children: [
+                          Icon(Icons.message, color: Colors.green),
+                          SizedBox(width: 5),
+                          Text(
+                            'Записаться',
+                            style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
                     ),
                     Expanded(
                       child: Container(),

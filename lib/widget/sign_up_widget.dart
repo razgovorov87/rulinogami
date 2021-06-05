@@ -7,11 +7,9 @@ class SignUpWidget extends StatelessWidget {
 
   Widget buildSignUp() => Column(
         children: [
-          Spacer(),
           Center(
             child: GoogleSignUpButtonWidget(),
           ),
-          Spacer(),
         ],
       );
 }

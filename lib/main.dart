@@ -5,7 +5,9 @@ import 'package:rulinogami/pages/LessonPage.dart';
 import 'package:rulinogami/pages/LoginPage.dart';
 import 'package:rulinogami/pages/ProfilePage.dart';
 import 'package:rulinogami/pages/ShedulePage.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_core/firebase_core.dart';
+import 'package:rulinogami/pages/TeamPage.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,13 +22,14 @@ class MyApp extends StatelessWidget {
       title: 'Ruli Nogami',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: LoginPage(),
+      home: HomePage(),
       routes: {
         '/home': (context) => HomePage(),
         '/coursePage': (context) => CoursePage(),
         '/lessonPage': (context) => LessonPage(),
         '/shedule': (context) => ShedulePage(),
         '/profile': (context) => ProfilePage(),
+        '/team': (context) => TeamPage(),
       },
     );
   }

@@ -1,7 +1,8 @@
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
-import 'package:rulinogami/pages/LoginPage.dart';
 import 'package:rulinogami/provider/google_sign_in.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -31,15 +32,12 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 8),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     final provider =
-            //         Provider.of<GoogleSignInProvider>(context, listen: false);
-            //     provider.logout();
-            //     Navigator.pushNamed(context, '/login');
-            //   },
-            //   child: Text('Выйти из аккаунта'),
-            // ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Назад'),
+            ),
           ],
         ),
       ),
