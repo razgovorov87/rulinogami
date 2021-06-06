@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -96,12 +97,14 @@ class HomeWidget extends StatelessWidget {
                           'Базовый уровень',
                           'img1',
                           Color(0xFFD9FFCA),
+                          'DqZmKxGe3ZRT8lzjA6j4',
                         ),
                         SizedBox(height: 20),
                         CourseWidget(
                           'Слалом',
                           'img2',
                           Color(0xFFD9FFCA),
+                          '0pWjgVvSTR72SUWeZ8xU',
                         ),
                       ],
                     ),
@@ -116,12 +119,14 @@ class HomeWidget extends StatelessWidget {
                           'Слайды',
                           'img3',
                           Color(0xFFD9FFCA),
+                          'RCEV0HEcdcZiXveayOdZ',
                         ),
                         SizedBox(height: 20),
                         CourseWidget(
                           'Прыжки',
                           'img4',
                           Color(0xFFD9FFCA),
+                          'bu517rH6skFighJ0aPIF',
                         ),
                       ],
                     ),
@@ -186,8 +191,9 @@ class CourseWidget extends StatelessWidget {
   late String title;
   late Color bgColor;
   late String imgPath;
+  late String id;
 
-  CourseWidget(this.title, this.imgPath, this.bgColor);
+  CourseWidget(this.title, this.imgPath, this.bgColor, this.id);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -201,7 +207,7 @@ class CourseWidget extends StatelessWidget {
           Navigator.pushNamed(
             context,
             '/coursePage',
-            arguments: {'title': '$title', 'img': '$imgPath'},
+            arguments: {'title': '$title', 'img': '$imgPath', 'id': '$id'},
           );
         },
         child: Column(

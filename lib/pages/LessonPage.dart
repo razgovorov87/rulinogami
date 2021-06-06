@@ -98,8 +98,9 @@ class _LessonPageState extends State<LessonPage> {
                       ],
                     ),
                     SizedBox(height: 20),
-                    if (desc.isNotEmpty)
+                    if (desc.isNotEmpty && desc.length > 5)
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,6 +14,8 @@ class TeamPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var stream = FirebaseFirestore.instance.collection('team').snapshots();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Наши инструктора'),
@@ -20,21 +23,43 @@ class TeamPage extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 10),
-        child: ListView.builder(
-          itemCount: instructors.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              leading: CircleAvatar(
-                backgroundImage:
-                    AssetImage('assets/image/${instructors[index].photo}.jpg'),
-              ),
-              title: Text(instructors[index].name),
-              subtitle: Text('@' + instructors[index].instagram),
-              trailing: TextButton(
-                onPressed: () => launch('tel::${instructors[index].phone}'),
-                child: Icon(Icons.phone, color: Colors.green),
-              ),
-            );
+        child: StreamBuilder(
+          stream: stream,
+          builder: (BuildContext, AsyncSnapshot<QuerySnapshot> snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+              default:
+                if (snapshot.hasData) {
+                  if (snapshot.data!.docs.length == 0) {
+                    return Center(
+                      child: Text('В базе данных нет инструкторов'),
+                    );
+                  } else {
+                    return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, int index) {
+                        final item = snapshot.data!.docs[index].data();
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage:
+                                AssetImage('assets/image/${item['photo']}.jpg'),
+                          ),
+                          title: Text(item['name']),
+                          subtitle: Text('@' + item['instagram']),
+                          trailing: TextButton(
+                            onPressed: () => launch('tel::${item['phone']}'),
+                            child: Icon(Icons.phone, color: Colors.green),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                } else {
+                  return Center(child: Text('Произошла ошибка!'));
+                }
+            }
+            ;
           },
         ),
       ),
